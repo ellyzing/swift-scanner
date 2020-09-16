@@ -1,0 +1,92 @@
+
+--------------------
+ip: 195.201.115.2
+country: Russia
+
+open_port: 3306 --- MySQL
+
+--------------------
+ip: 35.177.145.252
+country: United States
+HI
+admin
+config
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 139.224.132.110
+country: China
+READ_ME_TO_RECOVER_YOUR_DATA
+admin
+config
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 66.42.101.113
+country: United States
+READ_ME_TO_RECOVER_YOUR_DATA
+prodDB
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 104.244.53.18
+country: United States
+READ_ME_TO_RECOVER_YOUR_DATA
+admin
+config
+local
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 190.202.40.53
+country: Venezuela
+
+open_port: 5432 --- PostgreSQL
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 54.38.242.81
+country: United States
+READ_ME_TO_RECOVER_YOUR_DATA
+admin
+config
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 122.51.82.64
+country: China
+
+open_port: 3306 --- MySQL
+READ_ME_TO_RECOVER_YOUR_DATA
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 101.132.147.55
+country: China
+
+open_port: 3306 --- MySQL
+admin
+config
+READ_ME_TO_RECOVER_YOUR_DATA
+
+open_port: 27017 --- MongoDB
+
+--------------------
+ip: 85.192.12.42
+country: Russia
+
+open_port: 3306 --- MySQL
+.kibana_1
+.kibana_task_manager
+gl-events_0
+gl-system-events_0
+graylog_0
+
+open_port: 9200 --- Elasticsearch
