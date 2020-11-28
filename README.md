@@ -62,3 +62,5 @@ open_port: 9200 --- Elasticsearch
 	`pip3 install -r requirements.txt`
 - Пример запуска программы:
 	`python3 scan_v4.py -i ip.txt -l logins.txt -p password.txt`
+
+	`python3 sasha.py -l logins.txt -p password.txt`
