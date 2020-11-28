@@ -43,7 +43,7 @@ def Main_1(ip,port,logins_list,password_list):
     for login in logins_list:
         for password in password_list:
             try:
-                # print(1)
+
                 connect = pymysql.connect(
                     host=ip,
                     user=login,
@@ -52,7 +52,7 @@ def Main_1(ip,port,logins_list,password_list):
                     cursorclass=DictCursor,
                     autocommit=True
                 )
-                # print(2)
+
                 loggingLogPass(login,password)
                 with connect.cursor() as cursor:
                     query = "SHOW databases"
@@ -72,14 +72,14 @@ def Main_2(ip,port,logins_list,password_list):
     for login in logins_list:
         for password in password_list:
             try:
-                # print(1)
+
                 connect = psycopg2.connect(
                     host=ip,
                     user=login,
                     password=password,
                     port=port
                 )
-                # print(2)
+
                 loggingLogPass(login,password)
                 with connect.cursor() as cursor:
                     query = "select * from pg_database;"
@@ -100,14 +100,14 @@ def Main_3(ip,port,logins_list,password_list):
     for login in logins_list:
         for password in password_list:
             try:
-                # print(1)
+
                 client = MongoClient(ip,port)
                 try:
                     auth = client.admin.authenticate(login,password)
                     loggingLogPass(login,password)
                 except:
                     pass
-                # print(2)
+
 
                 for db in client.list_databases():
                     q=db['name']
@@ -123,7 +123,7 @@ def Main_4(ip,port,logins_list,password_list):
     for login in logins_list:
         for password in password_list:
             try:
-                # print(1)
+
                 es = Elasticsearch([{'host': ip, 'port': port}])
                 # if es.ping():
                 #     print('Yay Connect')
@@ -132,7 +132,7 @@ def Main_4(ip,port,logins_list,password_list):
                 for index in es.indices.get('*'):
                     print(index)
                     loggingDB(index)
-                # print(2)
+
                 # loggingLogPass(login,password)
                 # print("login: {} -- password {}".format(login, password))
             except:

@@ -88,20 +88,20 @@ def scan_port(ip,port):
             print("Couldn't connect to server")
             sys.exit()
         	
-def Main():
+def Main(fff):
     parse = argparse.ArgumentParser(description='Scanner')   # Создаем парсер
-    parse.add_argument('-i', action='store', dest='ip', help='File path with ip, example: \'ip.txt\'')  # Добавляем опцию, путь к файлу с ip
+    # parse.add_argument('-i', action='store', dest='ip', help='File path with ip, example: \'ip.txt\'')  # Добавляем опцию, путь к файлу с ip
     parse.add_argument('-l', action='store', dest='logins', help='File path with logins, example: \'logins.txt\'')  # Добавляем опцию, путь к файлу с логинами
     parse.add_argument('-p', action='store', dest='passwords', help='File path with passwords, example: \'password.txt\'')  # Добавляем опцию, путь к файлу с паролями
     args = parse.parse_args()      # Получаем аргументы
-    if (args.ip == None) or (args.logins == None) or (args.passwords == None):      # Если аргументов нет то
+    if (args.logins == None) or (args.passwords == None):      # @@(args.ip == None) or @@  Если аргументов нет то
         print (parse.print_help())  # Выводим хэлп
         exit()     # Выход
     else:   # Иначе, если аргументы есть то
         #Проверка на существование файлов
-        if (OnFile(args.ip) != True):
-            print ("\x1b[31m" +str(datetime.datetime.now()) + " - ip List file no found\x1b[0m")
-            exit()
+    #     if (OnFile(args.ip) != True):
+    #         print ("\x1b[31m" +str(datetime.datetime.now()) + " - ip List file no found\x1b[0m")
+    #         exit()
         if (OnFile(args.logins) != True):
             print ("\x1b[31m" +str(datetime.datetime.now()) + " - logins List file no found\x1b[0m")
             exit()
@@ -109,21 +109,27 @@ def Main():
             print ("\x1b[31m" +str(datetime.datetime.now()) + " - passwords List file no found\x1b[0m")
             exit()
 
+    # iip = args.ip 
+    llog = args.logins
+    ppas = args.passwords
+
+
+
+
     # очистка промежуточных файлов перед сканированием
     open("ip_all.txt","w").close()
     open("csv.txt","w").close() 
 
-    # для записи ip (в т.ч. с диапазонами) в ip_all.txt
-    with open(args.ip, 'r') as f:         
-        strings = f.read().splitlines()
-        for i in range(len(strings)):   # Добавление ip
-            if ('-' in strings[i]):     #ip из диапазонов
-                ipRange(strings[i])
-            elif ('/' in strings[i]):   #ip с маской
-                for x in ipcalc.Network(strings[i]):
-                    ipAdd(str(x))
-            else: # простой ip						 
-                ipAdd(strings[i])						 
+    # для записи ip (в т.ч. с диапазонами) в ip_all.txt 
+    strings = fff.read().splitlines()
+    for i in range(len(strings)):   # Добавление ip
+        if ('-' in strings[i]):     #ip из диапазонов
+            ipRange(strings[i])
+        elif ('/' in strings[i]):   #ip с маской
+            for x in ipcalc.Network(strings[i]):
+                ipAdd(str(x))
+        else: # простой ip						 
+            ipAdd(strings[i])						 
 
     # для красивого вывода
     coloredlogs.install() 
@@ -168,9 +174,6 @@ def Main():
     print("-" * 40)
     print("\033[34m \t Scan completed \033[0m")
     print("-" * 40)
-
-    llog = args.logins
-    ppas = args.passwords
 
     # из файла csv.txt берутся ip и порты и производится подключение к БД с записью результатов в log.txt
     with open("csv.txt", "r") as csv_file:
@@ -221,6 +224,7 @@ def Main():
                                 
                     print("+" * 90)
     print(datetime.datetime.now() - start_time)
+    print("\033[34m Scanning completed...\033[0m")
 
-if __name__=="__main__":
-	Main()
+# if __name__=="__main__":
+# 	Main()
